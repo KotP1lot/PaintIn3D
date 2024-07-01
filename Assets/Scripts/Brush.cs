@@ -24,11 +24,11 @@ public class Brush : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
             Debug.Log(hit.point);
-            //Paintable p = hit.collider.GetComponent<Paintable>();
-            //if (p != null)
-            //{
-            //    PaintManager.instance.paint(p, hit.point, radius, paintColor);
-            //}
+            PaintManager p = hit.collider.GetComponent<PaintManager>();
+            if (p != null)
+            {
+               p.Paint(hit.point, radius, paintColor);
+            }
         }
     }
     public void ChangeColor(Color color) => paintColor = color;
