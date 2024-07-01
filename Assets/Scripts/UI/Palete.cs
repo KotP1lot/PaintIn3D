@@ -7,7 +7,7 @@ public class Palete : MonoBehaviour
 {
     [SerializeField] PaleteCell prefab;
     List<PaleteCell> cells;
-    public Color currColor;
+    public event Action<Color> OnColorChanged;
     private readonly Color[] Colors = {
     Color.red,
     Color.green,
@@ -34,7 +34,7 @@ public class Palete : MonoBehaviour
     }
     void OnCellClickHandler(PaleteCell cell)
     {
-        currColor = cell.color;
+        OnColorChanged?.Invoke(cell.color);
         foreach (var c in cells)
         {
             c.SetActive(c == cell);
